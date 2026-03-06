@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>eLitmus Instagram Growth Proposal · Adithya Reddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================
+   RESET & BASE
+   ============================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --black:   #0c0c0e;
+  --white:   #ffffff;
+  --off:     #f7f6f2;
+  --orange:  #e8470f;
+  --orange2: #ff6b35;
+  --blue:    #1952d9;
+  --green:   #18a552;
+  --amber:   #d97706;
+  --ink:     #1a1a2e;
+  --muted:   #6e6a7c;
+  --border:  #e4e2db;
+  --card:    #ffffff;
+  --r: 10px;
+  --shadow: 0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--off);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ============================
+   SCROLL ANIMATION
+   ============================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================
+   PROGRESS BAR
+   ============================ */
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange2));
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ============================
+   NAV
+   ============================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(16px, 5vw, 48px);
+}
+.nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-brand span {
+  display: inline-block;
+  width: 28px; height: 28px;
+  background: var(--orange);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+}
+
+/* ============================
+   WRAPPER
+   ============================ */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 48px);
+}
+
+/* ============================
+   HERO
+   ============================ */
+.hero {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px) 0;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232,71,15,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(25,82,217,0.12) 0%, transparent 60%);
+}
+.hero-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  position: relative;
+  z-index: 1;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,71,15,0.15);
+  border: 1px solid rgba(232,71,15,0.35);
+  color: var(--orange2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.8); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.06;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--orange2);
+}
+.hero-sub {
+  color: rgba(255,255,255,0.5);
+  font-size: clamp(14px, 2vw, 16px);
+  max-width: 500px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.hero-from {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r);
+  padding: 12px 18px;
+  margin-bottom: 48px;
+}
+.hero-from .avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.hero-from-text {
+  line-height: 1.3;
+}
+.hero-from-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-from-text span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 0 calc(-1 * clamp(16px,5vw,48px));
+}
+.hero-stat {
+  padding: 24px clamp(12px, 2vw, 28px);
+  background: rgba(255,255,255,0.02);
+}
+.hero-stat .val {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.hero-stat .val.orange { color: var(--orange2); }
+.hero-stat .lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+@media (max-width: 700px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================
+   SECTION COMMONS
+   ============================ */
+section {
+  padding: clamp(50px, 8vw, 90px) 0;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4.5vw, 46px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+h2 em { font-style: italic; color: var(--orange); }
+.section-intro {
+  color: var(--muted);
+  font-size: clamp(14px, 2vw, 16px);
+  max-width: 600px;
+  margin-bottom: 44px;
+  line-height: 1.75;
+}
+
+/* ============================
+   DIVIDER
+   ============================ */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================
+   AUDIT
+   ============================ */
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .audit-grid { grid-template-columns: 1fr; }
+}
+.audit-card {
+  background: var(--card);
+  border-radius: var(--r);
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.audit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.audit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.audit-card.weak::before  { background: var(--orange); }
+.audit-card.avg::before   { background: var(--amber); }
+.audit-card.strong::before { background: var(--green); }
+
+.audit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+.audit-badge.weak   { background: #fff1ee; color: var(--orange); }
+.audit-badge.avg    { background: #fffbeb; color: var(--amber); }
+.audit-badge.strong { background: #f0fdf4; color: var(--green); }
+
+.audit-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.audit-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ============================
+   STRATEGIES
+   ============================ */
+.strategy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.strategy-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 26px;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 20px;
+  align-items: start;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.strategy-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-lg);
+}
+@media (max-width: 560px) {
+  .strategy-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .s-num { display: none; }
+}
+.s-num {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--off);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--border);
+  flex-shrink: 0;
+}
+.s-body h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.s-body p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.s-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.s-tag.high { background: var(--ink); color: #fff; }
+.s-tag.med  { background: var(--off); color: var(--muted); border: 1px solid var(--border); }
+
+/* ============================
+   PILLARS
+   ============================ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 400px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+}
+.pillar-card {
+  border-radius: var(--r);
+  padding: 26px 22px;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+.pillar-card:hover { transform: translateY(-3px); }
+.pillar-card.dark  { background: var(--black); color: #fff; }
+.pillar-card.red   { background: var(--orange); color: #fff; }
+.pillar-card.blue  { background: var(--blue); color: #fff; }
+.pillar-card.light { background: var(--card); border: 1px solid var(--border); color: var(--ink); }
+.pillar-card.green-card { background: #f0fdf4; border: 1px solid #bbf7d0; color: var(--ink); }
+
+.pillar-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  opacity: 0.12;
+  position: absolute;
+  bottom: -8px; right: 10px;
+  line-height: 1;
+  pointer-events: none;
+}
+.pillar-icon { font-size: 26px; margin-bottom: 14px; }
+.pillar-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.pillar-card p {
+  font-size: 12px;
+  opacity: 0.65;
+  line-height: 1.55;
+}
+
+/* ============================
+   TIMELINE
+   ============================ */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+  border-radius: 2px;
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.tl-dot {
+  position: absolute;
+  left: -33px;
+  top: 18px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  z-index: 1;
+}
+.tl-dot.m1 { background: var(--orange); }
+.tl-dot.m2 { background: var(--blue); }
+.tl-dot.m3 { background: var(--green); }
+
+.tl-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+}
+.tl-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.tl-items-list {
+  list-style: none;
+}
+.tl-items-list li {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+.tl-items-list li:last-child { border: none; padding-bottom: 0; }
+.tl-items-list li::before {
+  content: '→';
+  color: var(--orange);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ============================
+   LETTER / PROPOSAL
+   ============================ */
+.letter-section {
+  background: var(--black);
+  padding: clamp(50px, 8vw, 90px) clamp(16px, 5vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+.letter-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 70% at 90% 50%, rgba(232,71,15,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.letter-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.letter-inner .section-label { color: var(--orange2); }
+.letter-inner .section-label::before { background: var(--orange2); }
+.letter-inner h2 { color: #fff; }
+.letter-inner .section-intro { color: rgba(255,255,255,0.45); }
+
+.letter-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: clamp(28px, 5vw, 52px);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+.letter-card::before {
+  content: 'VOLUNTARY PROPOSAL';
+  position: absolute;
+  top: -13px; left: clamp(20px, 4vw, 36px);
+  background: var(--orange);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+.letter-date {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+.letter-to {
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.9;
+}
+.letter-to strong { color: #fff; display: block; margin-bottom: 2px; }
+
+.letter-body p {
+  font-size: clamp(13px, 2vw, 15px);
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+.letter-body p strong { color: var(--orange2); font-weight: 600; }
+.letter-body p:last-child { margin-bottom: 0; }
+
+.letter-sig {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.sig-left {}
+.sig-name-style {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.sig-title {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+.sig-title a {
+  color: var(--orange2);
+  text-decoration: none;
+}
+.sig-right {
+  text-align: right;
+}
+.sig-seal {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(232,71,15,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: auto;
+}
+.sig-seal span {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  line-height: 1.4;
+}
+.sig-seal strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--orange2);
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 28px clamp(16px, 5vw, 48px);
+  text-align: center;
+}
+footer p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+footer a { color: var(--orange2); text-decoration: none; }
+footer strong { color: rgba(255,255,255,0.5); }
+
+/* ============================
+   METRICS BAND
+   ============================ */
+.metrics-band {
+  background: var(--orange);
+  padding: clamp(28px, 5vw, 44px) clamp(16px, 5vw, 48px);
+}
+.metrics-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+}
+.metric {
+  text-align: center;
+}
+.metric .val {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.metric .lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ============================
+   QUOTE
+   ============================ */
+.quote-block {
+  border-left: 4px solid var(--orange);
+  padding: 20px 24px;
+  background: #fff8f5;
+  border-radius: 0 var(--r) var(--r) 0;
+  margin: 40px 0;
+}
+.quote-block p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 0;
+}
+.quote-block cite {
+  display: block;
+  margin-top: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ============================
+   TABLE OF CONTENTS
+   ============================ */
+.toc {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 0;
+}
+.toc h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.toc-list li:last-child { border: none; }
+.toc-list a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  flex: 1;
+  transition: color 0.2s;
+}
+.toc-list a:hover { color: var(--orange); }
+.toc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--border);
+  width: 26px;
+  flex-shrink: 0;
+}
+.toc-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  background: var(--off);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* ============================
+   CTA BANNER
+   ============================ */
+.cta-banner {
+  background: linear-gradient(135deg, var(--orange) 0%, #c73a08 100%);
+  border-radius: 16px;
+  padding: clamp(28px, 5vw, 44px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 clamp(50px,8vw,90px);
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+.cta-banner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+  position: relative;
+}
+.cta-banner p {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <span>e</span> eLitmus Proposal
+    </a>
+    <ul class="nav-links">
+      <li><a href="#audit">Audit</a></li>
+      <li><a href="#strategy">Strategy</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#proposal">Proposal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Voluntary Growth Proposal · March 2026</div>
+      <h1>Growing<br><em>eLitmus</em><br>on Instagram</h1>
+      <p class="hero-sub">A free, no-strings-attached Instagram strategy proposal for India's largest recruitment & assessment platform — from 3,732 followers to 25,000+.</p>
+      <div class="hero-from">
+        <div class="avatar">AR</div>
+        <div class="hero-from-text">
+          <strong>Adithya Reddy</strong>
+          <span>marketing.adithyareddy.online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="val">3,732</div>
+      <div class="lbl">Current Followers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val orange">25K+</div>
+      <div class="lbl">6-Month Target</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val">9</div>
+      <div class="lbl">Posts Published</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val orange">6×</div>
+      <div class="lbl">Growth Potential</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<section style="padding: clamp(40px,6vw,70px) 0 0;">
+  <div class="page">
+    <div class="reveal">
+      <div class="section-label">Contents</div>
+      <h2>What's inside<br>this <em>proposal</em></h2>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="toc" style="margin-top: 32px;">
+        <h3>Table of Contents</h3>
+        <ul class="toc-list">
+          <li><span class="toc-num">01</span><a href="#audit">Instagram Profile Audit</a><span class="toc-tag">Assessment</span></li>
+          <li><span class="toc-num">02</span><a href="#strategy">7 Growth Strategies</a><span class="toc-tag">Core Plan</span></li>
+          <li><span class="toc-num">03</span><a href="#pillars">Content Pillars</a><span class="toc-tag">Framework</span></li>
+          <li><span class="toc-num">04</span><a href="#roadmap">90-Day Roadmap</a><span class="toc-tag">Execution</span></li>
+          <li><span class="toc-num">05</span><a href="#proposal">Voluntary Proposal Letter</a><span class="toc-tag">Outreach</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section id="audit">
+  <div class="page">
+    <div class="reveal">
+      <div class="section-label">01 — Current State Audit</div>
+      <h2>What's working &<br>what's <em>not</em></h2>
+      <p class="section-intro">A candid review of the @elitmus.official profile — identifying the gaps costing followers and the strengths to build on.</p>
+    </div>
+
+    <div class="audit-grid">
+      <div class="audit-card weak reveal reveal-delay-1">
+        <span class="audit-badge weak">⚠ Needs Work</span>
+        <h4>Post Volume</h4>
+        <p>Only 9 posts total — critically low for a platform where output frequency is the primary growth driver. Competitors average 4–6 posts per week.</p>
+      </div>
+      <div class="audit-card weak reveal reveal-delay-2">
+        <span class="audit-badge weak">⚠ Needs Work</span>
+        <h4>Content Variety</h4>
+        <p>Almost all posts are "Company X IS HIRING" announcements. Zero educational content, storytelling, community engagement, or Reels strategy.</p>
+      </div>
+      <div class="audit-card avg reveal reveal-delay-1">
+        <span class="audit-badge avg">~ Average</span>
+        <h4>Profile Setup</h4>
+        <p>Bio is clear and concise. Highlights are organised into useful categories. Link-in-bio is active — but currently underutilised as a conversion tool.</p>
+      </div>
+      <div class="audit-card weak reveal reveal-delay-2">
+        <span class="audit-badge weak">⚠ Needs Work</span>
+        <h4>Visual Identity</h4>
+        <p>No consistent color palette, template system, or brand language across posts. The feed looks like a bulletin board, not a brand with authority.</p>
+      </div>
+      <div class="audit-card strong reveal reveal-delay-1">
+        <span class="audit-badge strong">✓ Strength</span>
+        <h4>Follower-to-Post Ratio</h4>
+        <p>3,732 followers from just 9 posts is exceptional organic demand. Most brands need hundreds of posts to reach this. It's a powerful launchpad.</p>
+      </div>
+      <div class="audit-card strong reveal reveal-delay-2">
+        <span class="audit-badge strong">✓ Strength</span>
+        <h4>Brand Authority</h4>
+        <p>"India's largest recruitment & assessment platform" carries real weight. The trust exists — Instagram simply needs a strategy to amplify it.</p>
+      </div>
+    </div>
+
+    <div class="quote-block reveal" style="margin-top: 36px;">
+      <p>"eLitmus already has the brand. What's missing is a consistent content engine to turn it into Instagram's top career destination for Indian engineers."</p>
+      <cite>— Adithya Reddy, marketing.adithyareddy.online</cite>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="page">
+    <div class="reveal">
+      <div class="section-label">02 — Growth Strategies</div>
+      <h2>7 ways to<br><em>10× the reach</em></h2>
+      <p class="section-intro">Concrete, executable tactics ordered by impact — from content overhaul to community-led growth loops.</p>
+    </div>
+
+    <div class="strategy-list">
+
+      <div class="strategy-card reveal">
+        <div class="s-num">1</div>
+        <div class="s-body">
+          <h3>Reels-First Content Strategy</h3>
+          <p>Instagram's algorithm heavily favours Reels. Create 15–30 second Reels: "Day in the life at Boeing", "How to crack a pH test", salary reveals, career tips. Target minimum 3 Reels per week. This single shift can multiply reach by 5–10×.</p>
+        </div>
+        <span class="s-tag high">High Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">2</div>
+        <div class="s-body">
+          <h3>Consistent Visual Brand System</h3>
+          <p>Design 4–5 locked post templates (Job Alert, Success Story, Tip of the Week, Poll, BTS). Use a fixed color palette across all content. The feed should feel like a curated magazine, not a random bulletin board.</p>
+        </div>
+        <span class="s-tag high">High Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">3</div>
+        <div class="s-body">
+          <h3>User-Generated Content Engine</h3>
+          <p>Ask every placed candidate to share a 30-second "I got hired!" video tagging @elitmus.official. Feature weekly as Reels or Stories. Each video reaches that person's entire network for free — viral social proof at zero cost.</p>
+        </div>
+        <span class="s-tag high">High Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">4</div>
+        <div class="s-body">
+          <h3>Educational Carousel Series</h3>
+          <p>Post weekly swipeable carousels: "5 resume mistakes that got you rejected", "How eLitmus pH score compares to other tests", "Salary benchmarks for freshers 2026". Carousels drive the highest save rate of any format — triggering algorithmic reach.</p>
+        </div>
+        <span class="s-tag high">High Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">5</div>
+        <div class="s-body">
+          <h3>Weekly Posting Calendar</h3>
+          <p>Mon: Job Alert · Wed: Educational carousel · Fri: Reel (success story or career tip) · Sat: Poll / Question Story. Consistency trains the algorithm to distribute every post to a larger audience automatically.</p>
+        </div>
+        <span class="s-tag med">Medium Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">6</div>
+        <div class="s-body">
+          <h3>Hashtag + Collab System</h3>
+          <p>Use a tiered hashtag strategy (niche: #elitmus #pHtest → mid: #jobsforengineersindia → broad: #hiringnow). Run Instagram Collabs with partner companies — their followers see the post too, doubling reach at zero extra cost.</p>
+        </div>
+        <span class="s-tag med">Medium Impact</span>
+      </div>
+
+      <div class="strategy-card reveal">
+        <div class="s-num">7</div>
+        <div class="s-body">
+          <h3>Community Engagement Loop</h3>
+          <p>Reply to every comment within 2 hours of posting (critical for the algorithm). Run monthly "Ask Me Anything" Stories with a placement officer. Feature follower questions in posts. Community drives loyalty, saves, and repeat visits.</p>
+        </div>
+        <span class="s-tag med">Medium Impact</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METRICS BAND -->
+<div class="metrics-band">
+  <div class="metrics-inner">
+    <div class="metric reveal">
+      <div class="val">3×</div>
+      <div class="lbl">Expected reach increase with Reels</div>
+    </div>
+    <div class="metric reveal reveal-delay-1">
+      <div class="val">40%</div>
+      <div class="lbl">Higher saves on carousel posts</div>
+    </div>
+    <div class="metric reveal reveal-delay-2">
+      <div class="val">25K</div>
+      <div class="lbl">Follower target in 6 months</div>
+    </div>
+    <div class="metric reveal reveal-delay-3">
+      <div class="val">4/wk</div>
+      <div class="lbl">Minimum posting cadence</div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="page">
+    <div class="reveal">
+      <div class="section-label">03 — Content Pillars</div>
+      <h2>A balanced<br><em>content mix</em></h2>
+      <p class="section-intro">Every post must fit one of five buckets. This stops eLitmus from being a one-note job board and builds genuine community.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card red reveal">
+        <div class="pillar-pct">35</div>
+        <div class="pillar-icon">💼</div>
+        <div>
+          <h4>Job Alerts — 35%</h4>
+          <p>Hiring posts redesigned with consistent templates and strong copy that drives link-in-bio clicks.</p>
+        </div>
+      </div>
+      <div class="pillar-card dark reveal reveal-delay-1">
+        <div class="pillar-pct">25</div>
+        <div class="pillar-icon">🎓</div>
+        <div>
+          <h4>Career Education — 25%</h4>
+          <p>Carousels, tips and Reels that teach freshers how to get hired — making eLitmus a mentor, not just a board.</p>
+        </div>
+      </div>
+      <div class="pillar-card blue reveal reveal-delay-2">
+        <div class="pillar-pct">20</div>
+        <div class="pillar-icon">🏆</div>
+        <div>
+          <h4>Success Stories — 20%</h4>
+          <p>Real candidates. Real numbers. "I got ₹8L through eLitmus" posts generate massive shares and saves.</p>
+        </div>
+      </div>
+      <div class="pillar-card light reveal">
+        <div class="pillar-pct">12</div>
+        <div class="pillar-icon">🏢</div>
+        <div>
+          <h4>Company Spotlights — 12%</h4>
+          <p>Behind-the-scenes at hiring partners. Builds desire for jobs and strengthens company relationships.</p>
+        </div>
+      </div>
+      <div class="pillar-card green-card reveal reveal-delay-1" style="grid-column: span 2;">
+        <div class="pillar-pct">8</div>
+        <div class="pillar-icon">🎯</div>
+        <div>
+          <h4>Interactive / Polls — 8%</h4>
+          <p>Story polls, quiz stickers, "Which role suits you?" content — boosts the engagement signals the algorithm rewards most heavily.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="page">
+    <div class="reveal">
+      <div class="section-label">04 — Execution Roadmap</div>
+      <h2>90-Day<br><em>launch plan</em></h2>
+      <p class="section-intro">A phased approach moving from foundations to full momentum — without overwhelming the team or requiring a big budget.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot m1">M1</div>
+        <div class="tl-card">
+          <h4>📐 Month 1 — Foundation</h4>
+          <ul class="tl-items-list">
+            <li>Design full visual brand system — templates, color palette, typography</li>
+            <li>Refresh existing 9 post captions, hashtags and CTAs</li>
+            <li>Set up the 4-day weekly content calendar</li>
+            <li>Publish first 3 Reels in the success story format</li>
+            <li>Launch "UGC Ask" — reach out to placed candidates for video testimonials</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot m2">M2</div>
+        <div class="tl-card">
+          <h4>🚀 Month 2 — Momentum</h4>
+          <ul class="tl-items-list">
+            <li>Publish 3-part educational carousel series for freshers</li>
+            <li>Launch first Instagram Collab post with a hiring partner</li>
+            <li>Start weekly AMA Stories with eLitmus placement officer</li>
+            <li>Introduce interactive poll stickers and question-box Stories</li>
+            <li>Review analytics — double down on the top-performing content type</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot m3">M3</div>
+        <div class="tl-card">
+          <h4>📈 Month 3 — Scale</h4>
+          <ul class="tl-items-list">
+            <li>Run first UGC campaign: "Share your eLitmus story"</li>
+            <li>Pitch 2–3 micro-influencer collaborations in career/tech niche</li>
+            <li>Optimise bio and link-in-bio for maximum conversion rate</li>
+            <li>Deliver full month-3 performance report: follower growth, reach, saves</li>
+            <li>Set data-backed revised targets for months 4–6</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section style="padding: clamp(40px,6vw,70px) 0 clamp(20px,4vw,40px);">
+  <div class="page">
+    <div class="cta-banner reveal">
+      <h3>Ready to take eLitmus<br>to 25,000 followers?</h3>
+      <p>All it takes is a 20-minute conversation. No commitment, no invoice — just ideas.</p>
+      <a class="cta-btn" href="https://marketing.adithyareddy.online">
+        Visit marketing.adithyareddy.online →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<div class="letter-section" id="proposal">
+  <div class="letter-inner">
+    <div class="reveal">
+      <div class="section-label">05 — Voluntary Proposal</div>
+      <h2>A letter to the<br><em>eLitmus team</em></h2>
+      <p class="section-intro">Written freely, with no obligation attached — because the mission deserves better than 9 posts.</p>
+    </div>
+
+    <div class="letter-card reveal">
+      <div class="letter-date">March 7, 2026 · Hyderabad, Telangana</div>
+      <div class="letter-to">
+        <strong>To: The Marketing & Growth Team</strong>
+        eLitmus Education Pvt. Ltd.<br>
+        @elitmus.official · Instagram
+      </div>
+
+      <div class="letter-body">
+        <p>My name is Adithya Reddy, and I run a marketing consultancy at <strong>marketing.adithyareddy.online</strong>. I'm reaching out not because I was hired to, but because I see a genuine, untapped opportunity in eLitmus's Instagram presence — and I'd like to help you capture it, freely.</p>
+
+        <p>eLitmus is already India's largest recruitment and assessment platform. You have brand authority, a proven track record, and 3,732 followers acquired with just 9 posts. That's a remarkable organic signal. The infrastructure exists. <strong>What's missing is a consistent content strategy</strong> that turns Instagram into a lead-generation and brand-authority machine matching eLitmus's scale.</p>
+
+        <p>I've volunteered my expertise — at no charge — to produce a complete growth proposal: a content audit, 7 ranked growth strategies, a 5-pillar content framework, and a 90-day execution roadmap. Every recommendation is specific to eLitmus's audience of engineering freshers, job seekers, and hiring partners.</p>
+
+        <p>I'm not asking for budget. I'm not pitching a retainer. <strong>I'm asking for a 20-minute conversation</strong> to walk your team through these ideas. If they're useful, we explore next steps together. If not, the strategy is yours to keep — at zero cost, with zero obligation.</p>
+
+        <p>eLitmus's mission — connecting the right talent with the right opportunity — deserves an Instagram presence that reflects it. I believe I can help you build exactly that.</p>
+      </div>
+
+      <div class="letter-sig">
+        <div class="sig-left">
+          <div class="sig-name-style">Adithya Reddy</div>
+          <div class="sig-title">Marketing Strategist & Consultant · <a href="https://marketing.adithyareddy.online">marketing.adithyareddy.online</a></div>
+        </div>
+        <div class="sig-right">
+          <div class="sig-seal">
+            <span>Voluntary<br>Proposal</span>
+            <strong>AR</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Voluntary proposal prepared by <strong>Adithya Reddy</strong> · <a href="https://marketing.adithyareddy.online">marketing.adithyareddy.online</a> · March 2026</p>
+  <p style="margin-top: 6px;">All strategies are original recommendations for <strong>@elitmus.official</strong></p>
+</footer>
+
+<!-- JS: SCROLL ANIMATIONS + PROGRESS -->
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
